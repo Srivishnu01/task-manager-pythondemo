@@ -16,14 +16,14 @@ class Task:
 
     def __str__(self):
         return (f"Task ID: {self.id}, Title: {self.title}, Description: "
-                f'{self.desc}, Priority: {("High", "Medium", "Low")[self.priority]}, Status: '
+                f'{self.desc}, Priority: {priorities[self.priority]}, Status: '
                 f'{statuses[self.status]}')
 
 
 def get_priority(printable, include_empty_string=False):
     priority = input(printable)
     while priority not in priorities + (("",) if include_empty_string else ()):
-        print('please enter valid priority out of ("High", "Medium", "Low")')
+        print(f'please enter valid priority out of {priorities}')
         priority = input(printable)
     if not priority: return None
     return priorities.index(priority)
@@ -32,7 +32,7 @@ def get_priority(printable, include_empty_string=False):
 def get_status(printable, include_empty_string=False):
     status = input(printable)
     while status not in statuses + (("",) if include_empty_string else ()):
-        print('please enter valid status out of ("Pending", "In Progress", "Completed")')
+        print(f'please enter valid status out of {statuses}')
         status = input(printable)
     if not status: return None
     return statuses.index(status)
